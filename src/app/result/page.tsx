@@ -1,28 +1,26 @@
-"use client"
+"use client";
 
-import {useSearchParams} from 'next/navigation';
-import {useEffect, useState} from "react";
-import {getLunarMonthAndDay} from "@/utils/date/convertToLunarDate";
-import {NameMeaning} from "@/app/types/name.interface";
-import {generateNameWithMeaning} from "@/utils/name/generateName";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState, Suspense } from "react";
+import { getLunarMonthAndDay } from "@/utils/date/convertToLunarDate";
+import { NameMeaning } from "@/app/types/name.interface";
+import { generateNameWithMeaning } from "@/utils/name/generateName";
 import Image from "next/image";
 import bgResult from "@/assets/bg_result.jpg";
 
-export default function ResultPage() {
+function ResultContent() {
     const searchParams = useSearchParams();
     const bday = searchParams.get('bday') || '';
 
     const [result, setResult] = useState<NameMeaning>();
 
     useEffect(() => {
-        const {month, day} = getLunarMonthAndDay(bday);
-
+        const { month, day } = getLunarMonthAndDay(bday);
         const generatedName = generateNameWithMeaning(month, day);
-
         setResult(generatedName);
     }, [bday]);
 
-    if (!result) return (<p>loading...</p>)
+    if (!result) return (<p>loading...</p>);
 
     return (
         <div className="w-full h-full max-w-screen-sm bg-white shadow-lg rounded-lg">
@@ -33,5 +31,13 @@ export default function ResultPage() {
                 <p className="w-48 text-center mb-5">{result.dayMeaning}</p>
             </div>
         </div>
+    );
+}
+
+export default function ResultPage() {
+    return (
+        <Suspense fallback={<p>로딩 중...</p>}>
+            <ResultContent />
+        </Suspense>
     );
 }
