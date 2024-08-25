@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} w-screen h-max bg-gray-100 flex justify-center`}>{children}</body>
+      <body className={`${inter.className} w-screen h-max bg-gray-100 flex justify-center`}>
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
