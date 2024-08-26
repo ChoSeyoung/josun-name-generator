@@ -7,20 +7,14 @@ import {NameMeaning} from "@/app/types/name.interface";
 import {generateNameWithMeaning} from "@/utils/name/generateName";
 import Image from "next/image";
 import bgResult from "@/assets/bg_result.jpg";
-import Link from "next/link";
-
-
 
 function ResultContent() {
-
     const searchParams = useSearchParams();
     const bday = searchParams.get('bday') || '';
 
     const [result, setResult] = useState<NameMeaning>();
 
     useEffect(() => {
-
-
         const {month, day} = getLunarMonthAndDay(bday);
         const generatedName = generateNameWithMeaning(month, day);
         setResult(generatedName);
@@ -67,7 +61,7 @@ function ResultContent() {
             </div>
             <div className="bg-[#F1E5C8] p-5 w-full">
                 <button
-                    className="block w-full h-12 bg-[#3b3b6d] text-[#fdf4e3] font-semibold rounded-full shadow-md hover:bg-[#4a4a85] transition duration-300"
+                    className="block w-full h-12 bg-[#3b3b6d] text-[#fdf4e3] font-semibold rounded-full shadow-md"
                     onClick={() => {
                         window.location.href = 'https://github.com/sponsors/ChoSeyoung'
                     }}
@@ -78,13 +72,13 @@ function ResultContent() {
                 <br/>
                 <button
                     id="kakao-link-btn"
-                    className="block w-full h-12 bg-[#FEE500] text-[#191919] font-semibold rounded-full shadow-md hover:bg-[#4a4a85] transition duration-300"
+                    className="block w-full h-12 bg-[#FEE500] text-[#191919] font-semibold rounded-full shadow-md"
                     onClick={handleShare}
                 >카카오톡 공유하기
                 </button>
                 <br/>
                 <button
-                    className="block w-full h-12 bg-[#df605e] text-[#fdf4e3] font-semibold rounded-full shadow-md hover:bg-[#4a4a85] transition duration-300"
+                    className="block w-full h-12 bg-[#df605e] text-[#fdf4e3] font-semibold rounded-full shadow-md"
                     onClick={() => {
                         window.history.back()
                     }}
