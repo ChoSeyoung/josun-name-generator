@@ -10,7 +10,6 @@ export default function Home() {
     const router = useRouter(); // 라우터 사용
 
     const handleSubmit = () => {
-        console.log('handleSubmit');
         // 생년월일이 8글자인지 확인 및 숫자인지 확인
         if (bday.length !== 8 || isNaN(Number(bday))) {
             alert("생년월일은 8자리 숫자로 입력해 주세요."); // 유효하지 않은 경우 경고
