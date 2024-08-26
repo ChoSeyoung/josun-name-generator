@@ -23,7 +23,7 @@ function ResultContent() {
     }, [bday]);
 
     const handleShare = async () => {
-        window.Kakao.init(process.env.KAKAO_APP_KEY_JS);
+        window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_KEY_JS);
 
         const { Kakao, location } = window;
 
