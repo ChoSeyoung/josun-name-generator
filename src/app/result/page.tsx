@@ -14,7 +14,6 @@ function ResultContent() {
     const bday = searchParams.get('bday') || '';
 
     const [result, setResult] = useState<NameMeaning>();
-    const [copySuccess, setCopySuccess] = useState('');
 
     useEffect(() => {
         const {month, day} = getLunarMonthAndDay(bday);
@@ -26,6 +25,12 @@ function ResultContent() {
         window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_KEY_JS);
 
         const { Kakao, location } = window;
+
+        Kakao.Link.createScrapButton({
+            container: '#kakao-link-btn',
+            requestUrl: location.hostname,
+            templateId : 111532
+        });
 
         Kakao.Link.sendScrap({
             requestUrl: location.href,
@@ -72,6 +77,7 @@ function ResultContent() {
 
                 <br/>
                 <button
+                    id="kakao-link-btn"
                     className="block w-full h-12 bg-[#FEE500] text-[#191919] font-semibold rounded-full shadow-md hover:bg-[#4a4a85] transition duration-300"
                     onClick={handleShare}
                 >카카오톡 공유하기
