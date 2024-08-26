@@ -9,13 +9,18 @@ import Image from "next/image";
 import bgResult from "@/assets/bg_result.jpg";
 import Link from "next/link";
 
+
+
 function ResultContent() {
+
     const searchParams = useSearchParams();
     const bday = searchParams.get('bday') || '';
 
     const [result, setResult] = useState<NameMeaning>();
 
     useEffect(() => {
+
+
         const {month, day} = getLunarMonthAndDay(bday);
         const generatedName = generateNameWithMeaning(month, day);
         setResult(generatedName);
@@ -26,14 +31,9 @@ function ResultContent() {
 
         const { Kakao, location } = window;
 
-        Kakao.Link.createScrapButton({
+        Kakao.Share.createCustomButton({
             container: '#kakao-link-btn',
-            requestUrl: location.hostname,
-            templateId : 111532
-        });
-
-        Kakao.Link.sendScrap({
-            requestUrl: location.href,
+            templateId: 111532,
         });
     };
 
